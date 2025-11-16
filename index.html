@@ -4,474 +4,362 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PNL Capital Partners LLC | 0 DTE SPX Private Fund</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS Variables & Auto Dark Mode --- */
-        :root {
-            /* Light Mode (Default) */
-            --bg-color: #f4f4f4; /* Light system gray */
-            --text-color: #1d1d1f; /* Near-black */
-            --text-color-secondary: #6e6e73; /* Medium gray */
-            
-            --accent-color: #8A8A8E; /* System Gray 2 */
-            --accent-color-hover: #6E6E73; /* System Gray */
-            --cta-text-color: #FFFFFF; /* White text on gray button */
-            --accent-glow-a: rgba(138, 138, 142, 0.4);
-            --accent-glow-b: rgba(138, 138, 142, 0.8);
-
-            --glass-bg: rgba(255, 255, 255, 0.7); /* Milky white glass */
-            --glass-bg-inner: rgba(255, 255, 255, 0.5);
-            --glass-border: rgba(0, 0, 0, 0.1);
-            --footer-bg: #e9e9eb;
-            --footer-text: #6e6e73;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                /* Dark Mode Overrides */
-                --bg-color: #0a0a0a; /* Near-black */
-                --text-color: #f0f0f0; /* Light text */
-                --text-color-secondary: #8a8a8e; /* Medium-light gray */
-
-                --accent-color: #AEAEB2; /* System Gray 3 */
-                --accent-color-hover: #D1D1D6; /* System Gray 4 */
-                --cta-text-color: #1D1D1F; /* Dark text on light gray button */
-                --accent-glow-a: rgba(174, 174, 178, 0.4);
-                --accent-glow-b: rgba(174, 174, 178, 0.8);
-                
-                --glass-bg: rgba(30, 30, 30, 0.6); /* Dark smoky glass */
-                --glass-bg-inner: rgba(255, 255, 255, 0.1);
-                --glass-border: rgba(255, 255, 255, 0.1);
-                --footer-bg: #1d1d1f;
-                --footer-text: #8a8a8e;
-            }
-        }
-        /* --- End of Theme Setup --- */
-
-
-        body, html {
+        * {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
             line-height: 1.6;
             scroll-behavior: smooth;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 880px;
             margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
+            padding: 0 40px;
         }
 
-        /* --- Header & Navigation (Glass) --- */
+        /* Header */
         header {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            padding: 40px 0;
+            margin-bottom: 60px;
         }
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* UPDATED: Logo class now centers the SVG */
         .logo {
-            color: var(--text-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-svg {
-            transition: fill 0.3s ease;
-        }
-
-        nav ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        nav li {
-            display: inline-block;
-            margin-left: 25px;
-        }
-
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
+            font-size: 14px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+            color: #666;
         }
 
-        nav a:hover {
-            color: var(--accent-color); 
-        }
-
-        /* --- Hero Section (Text on Background) --- */
+        /* Hero */
         .hero {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+            margin-bottom: 120px;
         }
 
-        .hero h1 {
-            font-size: 3.8rem;
-            color: var(--text-color);
-            margin-bottom: 10px;
-            text-shadow: 0 1px 2px var(--glass-bg);
-        }
-
-        .hero .subtitle {
-            font-size: 1.6rem;
+        h1 {
+            font-size: 56px;
             font-weight: 300;
-            color: var(--text-color-secondary);
-            margin-bottom: 15px;
-            max-width: 600px;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            color: #000;
         }
 
-        .hero .philosophy {
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: var(--text-color-secondary);
-            margin-bottom: 35px;
+        .subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            color: #666;
+            letter-spacing: -0.2px;
+            margin-bottom: 16px;
+        }
+
+        .philosophy {
+            font-size: 18px;
+            font-weight: 400;
+            color: #999;
             font-style: italic;
+            margin-bottom: 48px;
         }
 
         .cta-button {
-            background-color: var(--accent-color); 
-            color: var(--cta-text-color);
-            padding: 15px 30px;
+            display: inline-block;
+            padding: 14px 32px;
+            background: #000;
+            color: #fff;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border: none;
-            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
         }
 
         .cta-button:hover {
-            background-color: var(--accent-color-hover);
-            color: var(--cta-text-color);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        @keyframes pulse-glow {
-            0% {
-                box-shadow: 0 0 5px var(--accent-glow-a), 0 4px 15px rgba(0, 0, 0, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 20px var(--accent-glow-b), 0 4px 15px rgba(0, 0, 0, 0.2);
-            }
-            100% {
-                box-shadow: 0 0 5px var(--accent-glow-a), 0 4px 15px rgba(0, 0, 0, 0.2);
-            }
+            background: #333;
+            transform: translateY(-1px);
         }
 
-        .hero .cta-button {
-            animation: pulse-glow 2.5s infinite;
-        }
-
-        /* --- Content Sections --- */
+        /* Sections */
         section {
-            padding: 40px 0;
+            margin-bottom: 100px;
         }
 
         h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--text-color);
-            margin-bottom: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #999;
+            margin-bottom: 32px;
         }
 
-        /* --- The Main "Glass Panel" Card --- */
-        .content-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            margin-bottom: 40px;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+        .content {
+            font-size: 18px;
+            font-weight: 300;
+            color: #333;
+            line-height: 1.8;
+            max-width: 680px;
         }
 
-        /* --- Strategy Section --- */
-        #strategy .content-card {
-            text-align: center;
-            font-size: 1.1rem;
-        }
-
-        /* --- Key Benefits (Glass cards within a section) --- */
-        .features-grid {
+        /* Benefits Grid */
+        .benefits-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            text-align: left;
+            gap: 40px;
+            margin-top: 48px;
         }
 
-        .feature-item {
-            background: var(--glass-bg-inner);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-5px);
-            background: var(--glass-bg);
+        .benefit-item {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
         }
 
-        .feature-item h3 {
-            font-size: 1.5rem;
-            color: var(--accent-color); 
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        
-        .feature-item p {
-            font-size: 1rem;
-            color: var(--text-color-secondary);
-            margin: 0;
+        .benefit-item h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 12px;
+            letter-spacing: -0.2px;
         }
 
-        /* --- Investor Form Section --- */
-        #invest .content-card {
-            text-align: center;
+        .benefit-item p {
+            font-size: 15px;
+            font-weight: 300;
+            color: #666;
+            line-height: 1.6;
         }
 
-        #invest p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            color: var(--text-color-secondary);
-        }
-
+        /* Form */
         .form-container {
             max-width: 500px;
-            margin: 0 auto;
-            text-align: left;
+            margin-top: 48px;
         }
 
-        .form-container input[type="email"],
-        .form-container input[type="text"],
-        .form-container input[type="tel"] {
-            background: var(--glass-bg-inner);
-            border: 1px solid var(--glass-border);
-            color: var(--text-color);
+        .form-container input {
             width: 100%;
-            padding: 15px;
-            font-size: 1rem;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-sizing: border-box; 
-        }
-
-        .form-container input::placeholder {
-            color: var(--text-color-secondary);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            transition: border-color 0.2s;
         }
 
         .form-container input:focus {
             outline: none;
-            border-color: var(--accent-color); 
-            box-shadow: 0 0 10px var(--accent-glow-a); 
+            border-color: #999;
+        }
+
+        .form-container input::placeholder {
+            color: #aaa;
         }
 
         .checkbox-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-        
-        .checkbox-container input[type="checkbox"] {
-            margin-right: 12px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--accent-color); 
+            align-items: flex-start;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #666;
         }
 
-        .checkbox-container label {
-            font-size: 0.9rem;
-            color: var(--text-color-secondary);
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 3px;
+            width: auto;
         }
 
         .checkbox-container a {
-            color: var(--accent-color); 
-            text-decoration: none;
-            margin-left: 5px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .checkbox-container a:hover {
+            color: #666;
             text-decoration: underline;
-        }
-        
-        .cta-button[type="submit"] {
-            width: 100%;
+            margin-left: 4px;
         }
 
-        /* --- Disclaimer Section (Subtle Glass) --- */
+        .checkbox-container a:hover {
+            color: #000;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #333;
+        }
+
+        /* Disclaimer */
         .disclaimer {
-            background: var(--glass-bg-inner);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 8px;
-            border: 1px solid var(--glass-border);
-            padding: 30px;
-            font-size: 0.9rem;
-            color: var(--text-color-secondary);
+            background: #f5f5f5;
+            padding: 40px;
+            border-radius: 4px;
+            margin-top: 80px;
         }
 
         .disclaimer h3 {
-            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 12px;
+            margin-top: 24px;
+        }
+
+        .disclaimer h3:first-child {
             margin-top: 0;
         }
 
-        /* --- Footer --- */
+        .disclaimer p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Footer */
         footer {
-            background: var(--footer-bg);
-            color: var(--footer-text);
+            margin-top: 120px;
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: #999;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--glass-border);
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         footer p {
-            margin: 5px 0;
+            margin: 8px 0;
         }
 
-        /* --- Responsive --- */
+        /* Responsive */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 1.5rem;
+            .container {
+                padding: 0 24px;
             }
-            nav {
-                display: none; 
+
+            h1 {
+                font-size: 40px;
             }
-            .hero h1 {
-                font-size: 2.5rem;
+
+            .subtitle {
+                font-size: 18px;
             }
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-            .features-grid {
+
+            .benefits-grid {
                 grid-template-columns: 1fr;
+                gap: 32px;
             }
-            .content-card {
-                padding: 30px 20px;
+
+            section {
+                margin-bottom: 80px;
             }
         }
-
     </style>
 </head>
 <body>
-
     <header>
         <div class="container">
-            <a href="#home" class="logo">
-                <svg width="80" height="27" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
-                  <text x="0" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="bold" fill="var(--text-color)">PNL</text>
-                </svg>
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#strategy">Strategy</a></li>
-                    <li><a href="#benefits">Benefits</a></li>
-                    <li><a href="#invest">Invest</a></li>
-                    <li><a href="#disclaimer">Disclaimer</a></li>
-                </ul>
-            </nav>
+            <div class="logo">PNL CAPITAL PARTNERS, LLC</div>
         </div>
     </header>
 
     <main>
-        <section id="home" class="hero">
-            <h1>PNL Capital Partners, LLC.</h1>
-            <p class="subtitle">A Private Fund Focused on 0 DTE SPX Strategies</p>
-            <p class="philosophy">"Systematically Collecting Profit. Diligently Managing Loss."</p>
-            <a href="#invest" class="cta-button">Learn More About Investing</a>
+        <section class="hero">
+            <div class="container">
+                <h1>Harvest volatility risk premium<br>with institutional protection</h1>
+                <p class="subtitle">Capturing VRP through 0 DTE SPX options while deploying sophisticated tail hedges and non-correlated strategies</p>
+                <p class="philosophy">"We don't forecast markets. We architect statistical edges with downside protection."</p>
+                <a href="#invest" class="cta-button">Request Fund Access</a>
+            </div>
         </section>
 
         <section id="strategy">
             <div class="container">
-                <div class="content-card">
-                    <h2>Our Fund's Strategy</h2>
-                    <p>
-                        Our fund specializes in a high-probability <strong>0 DTE (Zero Days to Expiration)</strong> options strategy on the <strong>S&P 500 Index (SPX)</strong>. This approach is designed to systematically harvest premium by capitalizing on rapid time decay (theta). We do not guess market direction; our strategy manages probabilities to seek consistent, daily income <strong>for our partners</strong>.
-                    </p>
-                </div>
+                <h2>How We Generate Returns</h2>
+                <p class="content">
+                    While most traders gamble on market direction, we systematically capture the <strong>Volatility Risk Premium (VRP)</strong>—the observable phenomenon where implied volatility consistently exceeds realized volatility. Our fund specializes in <strong>0 DTE (Zero Days to Expiration) SPX options</strong>, the most liquid options market in the world, where we harvest this premium daily.
+                </p>
+                <p class="content" style="margin-top: 24px;">
+                    VRP harvesting requires a <strong>multi-layered, nuanced approach</strong> to identifying the optimal path to capture edge as market conditions evolve. Our execution framework adapts in real-time, ensuring we're always positioned where the risk-reward is most favorable—not just following a static playbook.
+                </p>
+                <p class="content" style="margin-top: 24px;">
+                    This dynamic intelligence in execution, combined with institutional-grade infrastructure, is why we're the go-to fund for investors who understand that <strong>how you harvest VRP matters as much as the strategy itself</strong>.
+                </p>
             </div>
         </section>
 
         <section id="benefits">
             <div class="container">
-                <h2>The PNL Fund Advantage</h2>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <h3>Favorable Tax Treatment</h3>
-                        <p>The fund's strategy utilizes SPX (Section 1256 contracts), meaning profits are typically taxed at a <strong>60% long-term / 40% short-term</strong> capital gains rate.</p>
+                <h2>Why Sophisticated Investors Choose PNL</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <h3>Dynamic VRP Identification</h3>
+                        <p>Our algorithms constantly scan volatility surfaces to find where VRP is richest across strikes and expirations. We don't just sell premium—we hunt optimal edge in changing market environments with institutional-grade execution.</p>
                     </div>
-                    <div class="feature-item">
-                        <h3>Income Generation Focus</h3>
-                        <p>Our primary goal is to generate a consistent income stream by selling options premium, seeking to profit in most market environments.</p>
+                    <div class="benefit-item">
+                        <h3>Multi-Layered Tail Protection</h3>
+                        <p>We deploy non-correlated hedging strategies and systematic tail hedges to protect against black swan events, market meltdowns, and unexpected closures. Your capital is protected when markets break down.</p>
                     </div>
-                    <div class="feature-item">
-                        <h3>Systematic Risk Management</h3>
-                        <p>We employ a defined, rules-based system for trade entry and exit. Every position is managed with strict risk parameters to protect capital.</p>
+                    <div class="benefit-item">
+                        <h3>Keep More With 60/40 Tax Treatment</h3>
+                        <p>SPX options qualify as Section 1256 contracts—enjoy a blended 60% long-term / 40% short-term tax rate on all gains. Significantly better than ordinary income or standard capital gains treatment.</p>
                     </div>
                 </div>
             </div>
         </section>
-        
+
+        <section id="protection">
+            <div class="container">
+                <h2>Institutional Risk Management</h2>
+                <p class="content">
+                    Harvesting VRP is only half the equation. The real sophistication lies in <strong>how we protect capital</strong> when the improbable becomes reality.
+                </p>
+                <p class="content" style="margin-top: 24px;">
+                    Our risk framework deploys <strong>multiple layers of defense</strong>: systematic tail hedges that profit from extreme moves, non-correlated anti-strategies that zig when markets zag, and dynamic position sizing that adapts to realized volatility. Whether it's a flash crash, circuit breaker halt, or multi-day market closure, we have protocols in place.
+                </p>
+                <p class="content" style="margin-top: 24px;">
+                    This isn't about avoiding losses—it's about <strong>surviving to compound another day</strong>. While other volatility sellers blow up in black swan events, our hedging strategies are specifically designed to offset catastrophic scenarios. Your downside is managed. Your upside continues to compound.
+                </p>
+            </div>
+        </section>
+
         <section id="invest">
             <div class="container">
-                <div class="content-card">
-                    <h2>Request Information</h2>
-                    <p>Access to PNL Capital Partners LLC is limited to accredited investors. Please complete the form below to receive our fund's overview and schedule a consultation.</p>
-                    
-                    <form class="form-container" action="#" method="POST">
-                        <input type="text" name="name" placeholder="Full Name" required>
-                        <input type="email" name="email" placeholder="Email Address" required>
-                        <input type="tel" name="phone" placeholder="Phone Number (Optional)">
+                <h2>Partner With Us</h2>
+                <p class="content">
+                    Access is intentionally limited. We work exclusively with accredited investors who understand that the best returns come from strategies most people will never access.
+                </p>
+                <p class="content" style="margin-top: 16px; font-size: 16px; color: #666;">
+                    Complete the form below to receive our confidential fund overview, performance data, and detailed risk disclosures. One of our partners will personally reach out within 48 hours to discuss whether PNL Capital is the right fit for your portfolio.
+                </p>
 
-                        <div class="checkbox-container">
-                            <input type="checkbox" id="accredited" name="accredited" required>
-                            <label for="accredited">I certify that I am an accredited investor.</label>
+                <form class="form-container" action="#" method="POST">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone" placeholder="Phone Number (Optional)">
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="accredited" name="accredited" required>
+                        <label for="accredited">
+                            I certify that I am an accredited investor.
                             <a href="https://www.sec.gov/education/capitalraising/building-blocks/accredited-investor" target="_blank" rel="noopener">(What is this?)</a>
-                        </div>
-                        
-                        <button type="submit" class="cta-button">Request Fund Overview</button>
-                    </form>
-                </div>
+                        </label>
+                    </div>
+
+                    <button type="submit">Get Confidential Fund Overview</button>
+                </form>
             </div>
         </section>
 
@@ -481,14 +369,15 @@
                 <div class="disclaimer">
                     <h3>Not a Solicitation</h3>
                     <p>This website is for informational purposes only and does not constitute an offer or solicitation to sell shares or securities in PNL Capital Partners LLC or any related or associated fund. Any such offer or solicitation will be made only by means of a confidential Private Placement Memorandum (PPM) to qualified investors.</p>
+                    
                     <h3>For Accredited Investors Only</h3>
                     <p>Access to information about the investment products is limited to investors who qualify as "accredited investors" as defined in Rule 501(a) of Regulation D under the Securities Act of 1933.</p>
+                    
                     <h3>Risk of Loss</h3>
                     <p>Trading options involves significant risk and is not suitable for all investors. Past performance is not indicative of future results. All investments, trades, or decisions made on the basis of any information found on this site are committed at your own risk, financial or otherwise.</p>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
@@ -497,6 +386,5 @@
             <p>Investment in PNL Capital Partners LLC is limited to Accredited Investors only.</p>
         </div>
     </footer>
-
 </body>
 </html>
