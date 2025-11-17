@@ -266,6 +266,25 @@
                 margin-bottom: 80px;
             }
         }
+        button[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.form-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-message.success {
+    color: #0b8a00;
+}
+
+.form-message.error {
+    color: #b00020;
+}
+
     </style>
 </head>
 <body>
@@ -355,7 +374,7 @@
                     Submit the form to request our confidential fund overview, track record summary, and risk documentation. A partner will contact you to confirm alignment, answer questions, and outline next steps if there is a mutual fit.
                 </p>
 
-                <form class="form-container" action="https://script.google.com/macros/s/AKfycbyVdsIIZ57ogtzNdXgv5szMpN4gFNpRWs18r-FEXfsBzhfNgXeqsNghcIybJYjkeWtm/exec" method="POST">
+                <form id="invest-form" class="form-container" action="https://script.google.com/macros/s/AKfycbyVdsIIZ57ogtzNdXgv5szMpN4gFNpRWs18r-FEXfsBzhfNgXeqsNghcIybJYjkeWtm/exec" method="POST">
                     <input type="text" name="name" placeholder="Full Name" required>
                     <input type="email" name="email" placeholder="Email Address" required>
                     <input type="tel" name="phone" placeholder="Phone Number (Optional)">
@@ -368,7 +387,8 @@
                         </label>
                     </div>
 
-                    <button type="submit">Get Confidential Fund Overview</button>
+                    <button id="submit-btn" type="submit">Get Confidential Fund Overview</button>
+                    <p id="form-message" class="form-message"></p>
                 </form>
             </div>
         </section>
@@ -402,5 +422,53 @@
             <p>Investment in PNL Capital Partners LLC is limited to Accredited Investors only.</p>
         </div>
     </footer>
+    <script>
+  (function () {
+    var form = document.getElementById("invest-form");
+    var button = document.getElementById("submit-btn");
+    var messageEl = document.getElementById("form-message");
+    var scriptUrl = form.getAttribute("action");
+
+    if (!form || !button || !messageEl || !scriptUrl) return;
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // basic browser validation first
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      messageEl.textContent = "";
+      messageEl.className = "form-message";
+
+      var originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = "Sending…";
+
+      var formData = new FormData(form);
+
+      fetch(scriptUrl, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      })
+        .then(function () {
+          button.textContent = originalText;
+          button.disabled = false;
+          form.reset();
+          messageEl.textContent = "Thank you. A partner will contact you shortly.";
+          messageEl.className = "form-message success";
+        })
+        .catch(function () {
+          button.textContent = originalText;
+          button.disabled = false;
+          messageEl.textContent = "Something went wrong. Please try again or email us directly.";
+          messageEl.className = "form-message error";
+        });
+    });
+  })();
+</script>
 </body>
 </html>
