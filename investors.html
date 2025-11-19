@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNL Capital Partners - Interactive Presentation</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function PresentationDeck() {
+          const [currentSlide, setCurrentSlide] = useState(0);
+          const [selectedPath, setSelectedPath] = useState(null);
+
+          const goToSlide = (index) => {
+            if (index >= 0 && index < allSlides.length) {
+              if (index === 0) {
+                setCurrentSlide(0);
+                setSelectedPath(null);
+              } else {
+                setCurrentSlide(index);
+              }
+            }
+          };
+
+          const resetPresentation = () => {
+            setCurrentSlide(0);
+            setSelectedPath(null);
+          };
+
+          const switchPath = () => {
+            setSelectedPath(selectedPath === 'A' ? 'B' : 'A');
+            setCurrentSlide(1);
+          };
+
+          const sharedSlides = [
+            {
+              title: 'PNL Capital Partners',
+              subtitle: 'Intraday 0DTE SPX Options Income Strategy',
+              education: null,
+              content: (
+                <div className="space-y-12">
+                  <div className="text-center space-y-6">
+                    <p className="text-2xl text-gray-600 font-light">Educational overview of our intraday SPX options approach</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+                    <button onClick={() => { setSelectedPath('A'); setCurrentSlide(1); }} className="p-12 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl hover:shadow-2xl transition-all border-2 border-blue-200 hover:border-blue-400">
+                      <div className="flex justify-center mb-6"><span className="text-6xl">📚</span></div>
+                      <h3 className="text-3xl font-medium mb-4 text-gray-900">Path A: Beginner Track</h3>
+                      <p className="text-lg text-gray-700 leading-relaxed">Options explained with simple analogies</p>
+                    </button>
+                    <button onClick={() => { setSelectedPath('B'); setCurrentSlide(1); }} className="p-12 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl hover:shadow-2xl transition-all border-2 border-gray-200 hover:border-gray-400">
+                      <div className="flex justify-center mb-6"><span className="text-6xl">💼</span></div>
+                      <h3 className="text-3xl font-medium mb-4 text-gray-900">Path B: Institutional Track</h3>
+                      <p className="text-lg text-gray-700 leading-relaxed">Deep dive into VRP and execution</p>
+                    </button>
+                  </div>
+                  <p className="text-sm text-gray-400 text-center mt-16 italic">Educational only, not investment advice.</p>
+                </div>
+              )
+            },
+            {
+              title: 'Income is the outcome',
+              education: 'Investment philosophy should focus on generating usable cash flow.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                    <p className="text-xl text-gray-800 leading-relaxed"><strong>The only reason to invest is to turn capital into usable income.</strong></p>
+                  </div>
+                  <ul className="space-y-6 text-xl">
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Most investors rely on slow compounding and hope</span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">We focus on <strong>frequent, small cash flows</strong></span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Goal: systematic process, not hero trades</span></li>
+                  </ul>
+                  <div className="flex items-center justify-center mt-12 pt-8 border-t-2 border-gray-200">
+                    <div className="flex items-center space-x-6 text-2xl">
+                      <div className="px-8 py-4 bg-gray-100 rounded-xl font-medium">Capital</div>
+                      <div className="text-4xl text-blue-500">→</div>
+                      <div className="px-8 py-4 bg-blue-100 rounded-xl font-medium">Process</div>
+                      <div className="text-4xl text-blue-500">→</div>
+                      <div className="px-8 py-4 bg-green-100 rounded-xl font-medium">Income</div>
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Why bother with anything beyond stocks and bonds?',
+              education: 'The 60/40 portfolio depended on falling rates. That era is over.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg">
+                    <p className="text-xl text-gray-800">The old playbook is broken. We need new sources of return.</p>
+                  </div>
+                  <ul className="space-y-6 text-xl">
+                    <li className="flex items-start"><span className="text-yellow-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Classic 60/40 depended on <strong>40 years of falling rates</strong></span></li>
+                    <li className="flex items-start"><span className="text-yellow-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Today: high valuations, high deficits, frequent shocks</span></li>
+                    <li className="flex items-start"><span className="text-yellow-500 mr-4 text-2xl font-bold">•</span><span className="pt-1"><strong>"Lost decades"</strong> where buy-and-hold delivered flat returns</span></li>
+                    <li className="flex items-start"><span className="text-yellow-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">You want <strong>diversified return streams</strong></span></li>
+                  </ul>
+                </div>
+              )
+            }
+          ];
+
+          const pathASlides = [
+            {
+              title: 'What is an option in plain language',
+              education: 'An option is a standardized contract with rights but not obligations.',
+              content: (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-2 gap-8">
+                    <div className="bg-green-50 p-8 rounded-xl border-2 border-green-200">
+                      <h3 className="text-2xl font-semibold mb-4 text-green-800">Call Option</h3>
+                      <p className="text-lg">Right to <strong>buy</strong> at strike price</p>
+                    </div>
+                    <div className="bg-red-50 p-8 rounded-xl border-2 border-red-200">
+                      <h3 className="text-2xl font-semibold mb-4 text-red-800">Put Option</h3>
+                      <p className="text-lg">Right to <strong>sell</strong> at strike price</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">An option is a <strong>contract on SPX</strong></span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Has <strong>strike price</strong> and <strong>expiration date</strong></span></li>
+                  </ul>
+                  <div className="mt-12 text-center p-6 bg-gray-100 rounded-xl">
+                    <p className="text-2xl italic">💡 Think <strong>reservation</strong>, not obligation</p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Buying vs selling options',
+              education: 'Buyers pay premium hoping for big moves. Sellers collect premium and take on risk.',
+              content: (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-2 gap-8">
+                    <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-8">
+                      <h3 className="text-2xl font-semibold mb-6 text-blue-800">Buying Options 🎟️</h3>
+                      <ul className="space-y-4 text-lg">
+                        <li>• You <strong>pay premium</strong>, risk is limited</li>
+                        <li>• <strong>Hoping for big move</strong></li>
+                        <li>• Like buying <strong>lottery tickets</strong></li>
+                      </ul>
+                    </div>
+                    <div className="bg-green-50 border-2 border-green-300 rounded-xl p-8">
+                      <h3 className="text-2xl font-semibold mb-6 text-green-800">Selling Options 🏦</h3>
+                      <ul className="space-y-4 text-lg">
+                        <li>• You <strong>receive premium</strong> upfront</li>
+                        <li>• You take on <strong>obligation</strong></li>
+                        <li>• Like being the <strong>insurance company</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="text-center mt-12 p-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border-2 border-purple-200">
+                    <p className="text-2xl font-medium">Buyers buy <span className="text-blue-600">hope</span> → Sellers sell <span className="text-green-600">insurance</span></p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Real world analogy 1 – Insurance',
+              education: 'Insurance companies collect premiums from thousands and pay out on rare events.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-blue-50 p-8 rounded-xl border-2 border-blue-200">
+                    <p className="text-2xl text-gray-800 mb-6">🚗 You pay car insurance every year, most years you never crash</p>
+                    <p className="text-xl text-gray-700">The insurance company keeps most premiums and pays out on rare big events</p>
+                  </div>
+                  <div className="bg-white p-8 rounded-xl border-2 border-gray-200">
+                    <h3 className="text-2xl font-semibold mb-6">Insurance companies rely on:</h3>
+                    <div className="space-y-4 text-xl">
+                      <div className="flex items-center p-4 bg-green-50 rounded-lg"><span className="text-3xl mr-4">1️⃣</span><span className="font-medium">Probabilities</span></div>
+                      <div className="flex items-center p-4 bg-blue-50 rounded-lg"><span className="text-3xl mr-4">2️⃣</span><span className="font-medium">Large number of policies</span></div>
+                      <div className="flex items-center p-4 bg-purple-50 rounded-lg"><span className="text-3xl mr-4">3️⃣</span><span className="font-medium">Strict risk limits</span></div>
+                    </div>
+                  </div>
+                  <div className="text-center p-6 bg-yellow-50 rounded-xl border-l-4 border-yellow-500">
+                    <p className="text-xl italic">Selling options is similar: <strong>small gains often, rare big hits if unmanaged</strong></p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Real world analogy 2 – Rental property',
+              education: 'Like rental owners focus on monthly rent, we focus on daily premium collection.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-green-50 p-8 rounded-xl border-2 border-green-200">
+                    <div className="flex items-center mb-6">
+                      <span className="text-5xl mr-4">🏠</span>
+                      <h3 className="text-2xl font-semibold">Think of owning a house and collecting rent</h3>
+                    </div>
+                    <p className="text-xl text-gray-700 leading-relaxed">The house price moves up and down, but your <strong>focus is the monthly cash flow</strong></p>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-green-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Selling options on SPX is like <strong>renting out risk for a day</strong></span></li>
+                    <li className="flex items-start"><span className="text-green-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Our focus is <strong>repeatable cash flow</strong>, not guessing the index in 10 years</span></li>
+                  </ul>
+                </div>
+              )
+            },
+            {
+              title: 'How probability fits in',
+              education: 'Every trade has probabilities. A 90% win rate with small wins can still be profitable.',
+              content: (
+                <div className="space-y-8">
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Every option has an <strong>implied probability</strong></span></li>
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Example: 90% win rate, 10% loss rate</span></li>
+                  </ul>
+                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl border-2 border-purple-200">
+                    <h3 className="font-semibold mb-6 text-2xl">Simple Expected Value</h3>
+                    <div className="space-y-4 text-lg">
+                      <div className="flex justify-between items-center p-4 bg-green-100 rounded-lg"><span>Win: <strong>+$100</strong></span><span className="text-green-700 font-semibold">90% chance</span></div>
+                      <div className="flex justify-between items-center p-4 bg-red-100 rounded-lg"><span>Lose: <strong>−$400</strong></span><span className="text-red-700 font-semibold">10% chance</span></div>
+                      <div className="mt-6 p-6 bg-white rounded-lg border-2 border-purple-300">
+                        <p className="text-center text-xl">Expected value = (0.9 × $100) − (0.1 × $400) = <span className="text-2xl font-bold text-green-600">+$50</span></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center p-6 bg-yellow-50 rounded-xl border-l-4 border-yellow-500">
+                    <p className="text-2xl italic"><strong>One trade</strong> means nothing → <strong>Hundreds of trades</strong> matter</p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Why 0DTE specifically',
+              education: '0DTE means zero days to expiration. No overnight risk when most crashes happen.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
+                    <p className="text-2xl font-semibold text-blue-800 mb-2">0DTE = Zero Days to Expiration</p>
+                    <p className="text-lg text-gray-700">Trade opens after the bell and expires same day at close</p>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-green-500 mr-4 text-3xl font-bold">✓</span><span className="pt-1"><strong>No overnight risk</strong> — Most big shocks happen when market is closed</span></li>
+                    <li className="flex items-start"><span className="text-green-500 mr-4 text-3xl font-bold">✓</span><span className="pt-1">Options decay <strong>very fast</strong> on the last day</span></li>
+                    <li className="flex items-start"><span className="text-green-500 mr-4 text-3xl font-bold">✓</span><span className="pt-1">Speed of decay + no overnight = <strong>what we harvest carefully</strong></span></li>
+                  </ul>
+                  <div className="mt-12 p-8 bg-gradient-to-r from-gray-50 via-blue-50 to-red-50 rounded-xl border-2 border-gray-200">
+                    <div className="flex items-center justify-center space-x-4 text-lg">
+                      <div className="px-6 py-3 bg-green-100 rounded-xl font-semibold border-2 border-green-300">9:30 AM Open</div>
+                      <div className="text-3xl">→</div>
+                      <div className="px-6 py-3 bg-blue-100 rounded-xl font-semibold border-2 border-blue-300">Trading</div>
+                      <div className="text-3xl">→</div>
+                      <div className="px-6 py-3 bg-yellow-100 rounded-xl font-semibold border-2 border-yellow-300">4:00 PM Close</div>
+                      <div className="text-3xl text-red-500">💀</div>
+                      <div className="px-6 py-3 bg-red-100 rounded-xl font-semibold border-2 border-red-300">Expires</div>
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'What we actually do in this fund',
+              education: 'We systematically sell defined-risk option spreads following pre-set rules.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border-2 border-blue-200">
+                    <p className="text-2xl text-gray-800 leading-relaxed">We sell small, <strong>defined-risk option structures</strong> on SPX intraday following a <strong>rules-based process</strong></p>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">We run a <strong>rules-based process</strong> rather than gut feel</span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">We target a <strong>modest daily edge</strong>, not home runs</span></li>
+                  </ul>
+                  <div className="bg-white p-8 rounded-xl border-2 border-gray-200">
+                    <h3 className="text-2xl font-semibold mb-6">We care more about:</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-center p-4 bg-green-50 rounded-lg"><span className="text-2xl mr-4">📊</span><span className="text-lg font-medium">Win rate over many trades</span></div>
+                      <div className="flex items-center p-4 bg-blue-50 rounded-lg"><span className="text-2xl mr-4">⚖️</span><span className="text-lg font-medium">Size of wins vs losses</span></div>
+                      <div className="flex items-center p-4 bg-purple-50 rounded-lg"><span className="text-2xl mr-4">🛡️</span><span className="text-lg font-medium">Staying in the game</span></div>
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Common beginner mistakes we avoid',
+              education: 'Most traders fail from emotions: trading too big, panicking, chasing losses.',
+              content: (
+                <div className="space-y-8">
+                  <div className="space-y-6">
+                    <div className="flex items-start p-6 bg-red-50 rounded-xl border-l-4 border-red-500"><span className="text-3xl mr-4">😰</span><span className="text-xl pt-1">Trading size based on feeling instead of a plan</span></div>
+                    <div className="flex items-start p-6 bg-orange-50 rounded-xl border-l-4 border-orange-500"><span className="text-3xl mr-4">📈</span><span className="text-xl pt-1">Using too much leverage and panicking during drawdowns</span></div>
+                    <div className="flex items-start p-6 bg-purple-50 rounded-xl border-l-4 border-purple-500"><span className="text-3xl mr-4">🦢</span><span className="text-xl pt-1">Ignoring tail risk and black swan events</span></div>
+                    <div className="flex items-start p-6 bg-red-50 rounded-xl border-l-4 border-red-500"><span className="text-3xl mr-4">😤</span><span className="text-xl pt-1">Chasing revenge trades after a loss</span></div>
+                  </div>
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border-2 border-green-300">
+                    <h3 className="text-2xl font-semibold mb-4 text-green-800">Our Approach</h3>
+                    <p className="text-xl"><strong>Fixed rules</strong> • <strong>Fixed size bands</strong> • <strong>Pre-defined exits</strong></p>
+                    <p className="text-lg text-gray-600 mt-3">Emotion-free, systematic execution</p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Summary for beginners',
+              education: 'Options can be understood through simple analogies. 0DTE gives fast decay and no overnight risk.',
+              content: (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
+                      <h3 className="text-xl font-semibold mb-3 text-blue-800">🔑 Key Concepts</h3>
+                      <ul className="space-y-3 text-lg">
+                        <li>• Options = Insurance</li>
+                        <li>• Sellers = Insurance companies</li>
+                        <li>• 0DTE = Same-day expiration</li>
+                      </ul>
+                    </div>
+                    <div className="p-6 bg-green-50 rounded-xl border-2 border-green-200">
+                      <h3 className="text-xl font-semibold mb-3 text-green-800">✓ Why It Works</h3>
+                      <ul className="space-y-3 text-lg">
+                        <li>• No overnight risk</li>
+                        <li>• Fast time decay</li>
+                        <li>• Law of large numbers</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">0DTE gives <strong>fast decay, no overnight</strong></span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">The edge matters when you <strong>respect probabilities</strong></span></li>
+                  </ul>
+                  <div className="text-center mt-12 p-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border-2 border-purple-200">
+                    <p className="text-2xl font-semibold mb-4">Ready for the institutional view?</p>
+                    <button onClick={() => { setSelectedPath('B'); setCurrentSlide(1); }} className="px-8 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900">Switch to Path B →</button>
+                  </div>
+                </div>
+              )
+            }
+          ];
+
+          const pathBSlides = [
+            {
+              title: 'Product and mandate',
+              education: 'Institutional-quality execution with legal protections.',
+              content: (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="p-8 bg-blue-50 rounded-xl border-2 border-blue-200">
+                      <h3 className="text-lg font-semibold mb-3 uppercase">Strategy</h3>
+                      <p className="text-xl">Intraday 0DTE SPX options</p>
+                    </div>
+                    <div className="p-8 bg-green-50 rounded-xl border-2 border-green-200">
+                      <h3 className="text-lg font-semibold mb-3 uppercase">Vehicle</h3>
+                      <p className="text-xl">US LP structure</p>
+                    </div>
+                    <div className="p-8 bg-purple-50 rounded-xl border-2 border-purple-200">
+                      <h3 className="text-lg font-semibold mb-3 uppercase">Objective</h3>
+                      <p className="text-xl">Stable returns with controlled drawdowns</p>
+                    </div>
+                    <div className="p-8 bg-yellow-50 rounded-xl border-2 border-yellow-200">
+                      <h3 className="text-lg font-semibold mb-3 uppercase">Implementation</h3>
+                      <p className="text-xl">Rules-based systematic execution</p>
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Volatility Risk Premium (VRP)',
+              education: 'Implied vol consistently exceeds realized vol. This gap compensates sellers.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border-2 border-blue-300">
+                    <p className="text-2xl leading-relaxed">Since 1990s, <strong>implied vol has overstated realized vol</strong> most of the time</p>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Options sellers get <strong>paid to absorb that gap</strong></span></li>
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">0DTE allows <strong>high frequency with tight feedback</strong></span></li>
+                  </ul>
+                  <div className="bg-white p-8 rounded-xl border-2 border-gray-300 shadow-lg">
+                    <h3 className="text-2xl font-semibold mb-4">Our Core Trade</h3>
+                    <p className="text-xl">Sell intraday <strong>implied movement</strong> vs <strong>realized movement</strong> with strict risk caps</p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Why 0DTE matters for VRP',
+              education: '0DTE options are repriced daily. Only 20% calendar time risk.',
+              content: (
+                <div className="space-y-8">
+                  <ul className="space-y-6 text-xl">
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">0DTE options are <strong>re-priced each morning</strong> with fresh information</span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">We <strong>re-mark our risk daily</strong></span></li>
+                  </ul>
+                  <div className="bg-green-50 p-8 rounded-xl border-l-4 border-green-500">
+                    <h3 className="text-2xl font-semibold mb-4 text-green-800">No Overnight Risk</h3>
+                    <p className="text-xl text-gray-700">Exposed only during about <strong>20% of calendar time</strong> (6.5 hours of 24)</p>
+                  </div>
+                  <ul className="space-y-6 text-xl">
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">0DTE has grown to <strong>dominant share</strong> of SPX volume</span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">This means <strong>deep liquidity and tight microstructure</strong></span></li>
+                  </ul>
+                </div>
+              )
+            },
+            {
+              title: 'Mean reversion in volatility',
+              education: 'Unlike prices which trend, volatility is mean-reverting.',
+              content: (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="p-6 bg-red-50 rounded-xl border-2 border-red-200">
+                      <h3 className="text-xl font-semibold mb-3 text-red-700">Stock Prices</h3>
+                      <p className="text-lg text-gray-700">Can trend indefinitely</p>
+                      <p className="text-sm text-gray-500 mt-2">No natural mean</p>
+                    </div>
+                    <div className="p-6 bg-green-50 rounded-xl border-2 border-green-200">
+                      <h3 className="text-xl font-semibold mb-3 text-green-700">Volatility</h3>
+                      <p className="text-lg text-gray-700">Oscillates around long-term mean</p>
+                      <p className="text-sm text-gray-500 mt-2">Mean-reverting</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">VIX and short-dated vol <strong>oscillate around a long-term mean</strong></span></li>
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1"><strong>Short-term vol shocks tend to mean revert</strong></span></li>
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">We <strong>monetize that mean reversion</strong></span></li>
+                  </ul>
+                </div>
+              )
+            },
+            {
+              title: 'Law of large numbers in practice',
+              education: 'We exploit a small edge repeated hundreds of times.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-blue-50 p-8 rounded-xl border-l-4 border-blue-500">
+                    <p className="text-2xl leading-relaxed">We are <strong>not trying to predict single days</strong></p>
+                    <p className="text-xl text-gray-600 mt-3">We exploit a small edge repeated <strong>hundreds of times</strong></p>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-green-500 mr-4 text-2xl font-bold">•</span><span className="pt-1"><strong>Thousands of occurrences per year</strong> bring realized results closer to expected value</span></li>
+                    <li className="flex items-start"><span className="text-green-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Benchmark horizon is <strong>quarters, not decades</strong></span></li>
+                  </ul>
+                  <div className="bg-white p-8 rounded-xl border-2 border-gray-300">
+                    <h3 className="text-2xl font-semibold mb-6">Our process is built around:</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-center p-4 bg-blue-50 rounded-lg"><span className="text-2xl mr-4">📋</span><span className="text-lg font-medium">Fixed rules</span></div>
+                      <div className="flex items-center p-4 bg-green-50 rounded-lg"><span className="text-2xl mr-4">⚖️</span><span className="text-lg font-medium">Consistent sizing bands</span></div>
+                      <div className="flex items-center p-4 bg-purple-50 rounded-lg"><span className="text-2xl mr-4">🚫</span><span className="text-lg font-medium">No skipping trades</span></div>
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Daily geometric compounding',
+              education: 'Small daily returns compound geometrically. 0.25-0.50% daily produces substantial annual returns.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border-2 border-green-300">
+                    <p className="text-2xl leading-relaxed">Very small daily edge at <strong>high frequency</strong> produces <strong>non-trivial annual returns</strong></p>
+                  </div>
+                  <div className="bg-white p-8 rounded-xl border-2 border-blue-300 shadow-lg">
+                    <h3 className="text-2xl font-semibold mb-4 text-blue-800">Main Idea</h3>
+                    <p className="text-xl"><strong>0.25% to 0.50% per day</strong> on used capital compounding over many days</p>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-orange-500 mr-4 text-2xl font-bold">⚠️</span><span className="pt-1">Compounding only works if you <strong>do not interrupt it</strong> with big drawdowns</span></li>
+                  </ul>
+                  <div className="bg-gray-50 p-8 rounded-xl border-2 border-gray-300">
+                    <h3 className="text-2xl font-semibold mb-6">Hence the obsession with:</h3>
+                    <div className="space-y-3 text-lg">
+                      <p>• Tight loss limits</p>
+                      <p>• Defined risk structures</p>
+                      <p>• Consistent rebalancing</p>
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Shannons demon and diversification',
+              education: 'Rebalancing between uncorrelated assets creates returns.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-purple-50 p-8 rounded-xl border-l-4 border-purple-500">
+                    <h3 className="text-2xl font-semibold mb-4 text-purple-800">Shannons Demon</h3>
+                    <p className="text-xl leading-relaxed">Even with two <strong>zero-expectancy assets</strong>, you can create positive return by <strong>rebalancing</strong></p>
+                  </div>
+                  <div className="bg-white p-8 rounded-xl border-2 border-gray-300">
+                    <h3 className="text-2xl font-semibold mb-6">In our world:</h3>
+                    <p className="text-lg mb-6">Mix of short vol 0DTE, longer-dated hedges, trend overlays, and overnight premium harvest</p>
+                    <div className="bg-green-50 p-6 rounded-lg">
+                      <h4 className="font-semibold mb-4 text-lg">By rebalancing and recycling PnL daily we:</h4>
+                      <div className="space-y-2 text-lg">
+                        <p>• Reduce volatility drag</p>
+                        <p>• Smooth path of returns</p>
+                        <p>• Create free lunch from diversification</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Multi-strategy ecosystem',
+              education: 'Multiple sub-strategies behave differently under stress.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-blue-50 p-6 rounded-xl border-2 border-blue-200">
+                    <p className="text-xl font-semibold text-blue-800 mb-4">Example building blocks:</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="p-6 bg-blue-50 rounded-xl border-l-4 border-blue-500">
+                      <h4 className="text-lg font-semibold">Intraday neutral premium selling</h4>
+                      <p className="text-gray-600">short vol, defined risk</p>
+                    </div>
+                    <div className="p-6 bg-green-50 rounded-xl border-l-4 border-green-500">
+                      <h4 className="text-lg font-semibold">Intraday trend-following</h4>
+                      <p className="text-gray-600">for days with strong directional flows</p>
+                    </div>
+                    <div className="p-6 bg-purple-50 rounded-xl border-l-4 border-purple-500">
+                      <h4 className="text-lg font-semibold">Longer-dated tail risk hedges</h4>
+                      <p className="text-gray-600">that explode during crises</p>
+                    </div>
+                    <div className="p-6 bg-yellow-50 rounded-xl border-l-4 border-yellow-500">
+                      <h4 className="text-lg font-semibold">Optional overnight premium harvesting</h4>
+                      <p className="text-gray-600">with separate risk budget</p>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl border-2 border-green-300">
+                    <p className="text-xl leading-relaxed">All strategies share same underlying but <strong>behave differently under stress</strong>. Daily rebalancing <strong>reduces drawdown</strong>.</p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Risk management framework',
+              education: 'We focus on worst-case exposure. Portfolio-level limits ensure no single event destroys the fund.',
+              content: (
+                <div className="space-y-8">
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-red-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Focus on <strong>buying power at risk</strong> and worst-case exposure</span></li>
+                    <li className="flex items-start"><span className="text-red-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Always trade <strong>defined-risk spreads</strong>, never naked trades</span></li>
+                  </ul>
+                  <div className="bg-white p-8 rounded-xl border-2 border-red-300 shadow-lg">
+                    <h3 className="text-2xl font-semibold mb-6 text-red-800">Portfolio Level Limits</h3>
+                    <div className="space-y-4">
+                      <div className="p-4 bg-red-50 rounded-lg"><p className="text-lg">• Max percentage of buying power committed</p></div>
+                      <div className="p-4 bg-orange-50 rounded-lg"><p className="text-lg">• Max daily loss stop</p></div>
+                      <div className="p-4 bg-yellow-50 rounded-lg"><p className="text-lg">• Max intraday volatility shock tolerance</p></div>
+                    </div>
+                  </div>
+                  <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-500">
+                    <p className="text-xl">Every trade is <strong>pre-specified before the bell</strong>: entry, management, exit</p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Microstructure and slippage control',
+              education: 'VRP edge is small. Poor execution can eliminate it.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-yellow-50 p-8 rounded-xl border-l-4 border-yellow-500">
+                    <p className="text-2xl leading-relaxed">The VRP edge assumes we <strong>do not give it all back</strong> in slippage</p>
+                  </div>
+                  <div className="bg-white p-8 rounded-xl border-2 border-gray-300">
+                    <h3 className="text-2xl font-semibold mb-6">We focus on:</h3>
+                    <div className="space-y-4">
+                      <div className="p-4 bg-blue-50 rounded-lg"><p className="text-lg">• Wide but capital-efficient vertical spreads</p></div>
+                      <div className="p-4 bg-green-50 rounded-lg"><p className="text-lg">• Managing mainly the short legs where edge lives</p></div>
+                      <div className="p-4 bg-purple-50 rounded-lg"><p className="text-lg">• Execution rules that reduce crossing wide spreads</p></div>
+                      <div className="p-4 bg-yellow-50 rounded-lg"><p className="text-lg">• Automation keeps execution consistent</p></div>
+                    </div>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Product, tax and implementation',
+              education: 'SPX provides capital efficiency and 60/40 tax treatment.',
+              content: (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
+                      <h4 className="font-semibold text-lg mb-3 text-blue-700">SPX Index Options</h4>
+                      <p className="text-gray-700">Capital efficiency and index diversification</p>
+                    </div>
+                    <div className="p-6 bg-green-50 rounded-xl border-2 border-green-200">
+                      <h4 className="font-semibold text-lg mb-3 text-green-700">Section 1256 Tax</h4>
+                      <p className="text-gray-700">US investors: 60/40 blended tax treatment</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">Trade SPX for <strong>capital efficiency</strong></span></li>
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">US investors benefit from <strong>Section 1256 blended tax</strong></span></li>
+                    <li className="flex items-start"><span className="text-purple-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">All trading is <strong>systematic and auditable</strong></span></li>
+                  </ul>
+                </div>
+              )
+            },
+            {
+              title: 'What success and failure look like',
+              education: 'We measure success by premium capture rate and MAR ratio.',
+              content: (
+                <div className="space-y-8">
+                  <div className="grid grid-cols-2 gap-8">
+                    <div className="p-8 bg-green-50 rounded-xl border-2 border-green-300">
+                      <h3 className="text-2xl font-semibold mb-6 text-green-800">✓ Success:</h3>
+                      <ul className="space-y-3 text-lg">
+                        <li>• Premium capture rate over time</li>
+                        <li>• MAR ratio return to max drawdown</li>
+                        <li>• Max days from high water mark</li>
+                      </ul>
+                    </div>
+                    <div className="p-8 bg-red-50 rounded-xl border-2 border-red-300">
+                      <h3 className="text-2xl font-semibold mb-6 text-red-800">✗ Failure:</h3>
+                      <ul className="space-y-3 text-lg">
+                        <li>• Breach of risk limits</li>
+                        <li>• Deviation from rules</li>
+                        <li>• Path-dependent blowups from size drift</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="bg-yellow-50 p-8 rounded-xl border-l-4 border-yellow-500">
+                    <p className="text-2xl italic">Edge is <strong>fragile</strong> if you ignore sizing, slippage and discipline</p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Limits and honest risks',
+              education: 'Short vol is never risk-free. We defend through design.',
+              content: (
+                <div className="space-y-8">
+                  <div className="bg-red-50 p-8 rounded-xl border-l-4 border-red-500">
+                    <p className="text-2xl text-red-800 font-semibold mb-4">Short vol is never risk-free</p>
+                    <p className="text-xl text-gray-700">Sudden intraday crashes or regime changes can hit the strategy hard</p>
+                  </div>
+                  <div className="bg-white p-8 rounded-xl border-2 border-gray-300">
+                    <h3 className="text-2xl font-semibold mb-6">Our defense is design, not prediction:</h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-4 bg-blue-50 rounded-lg"><p className="text-lg">• Defined risk positions</p></div>
+                      <div className="p-4 bg-green-50 rounded-lg"><p className="text-lg">• Tail hedges</p></div>
+                      <div className="p-4 bg-purple-50 rounded-lg"><p className="text-lg">• Hard risk caps</p></div>
+                      <div className="p-4 bg-yellow-50 rounded-lg"><p className="text-lg">• Multi-strategy diversification</p></div>
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 p-8 rounded-xl border-2 border-gray-200">
+                    <p className="text-xl">We view 0DTE as a <strong>specialized income sleeve</strong>, not a magic replacement</p>
+                  </div>
+                </div>
+              )
+            },
+            {
+              title: 'Closing and next steps',
+              education: 'This presentation is educational only.',
+              content: (
+                <div className="space-y-8">
+                  <ul className="space-y-5 text-xl">
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">This deck is <strong>education only</strong></span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">For beginners: <strong>selling insurance with discipline</strong></span></li>
+                    <li className="flex items-start"><span className="text-blue-500 mr-4 text-2xl font-bold">•</span><span className="pt-1">For professionals: <strong>VRP, law of large numbers, execution quality</strong></span></li>
+                  </ul>
+                  <div className="mt-12 p-8 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl border-2 border-blue-200">
+                    <h3 className="text-2xl font-semibold text-center mb-4">Ready to explore the beginner track?</h3>
+                    <div className="flex justify-center">
+                      <button onClick={() => { setSelectedPath('A'); setCurrentSlide(1); }} className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Switch to Path A →</button>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-400 text-center mt-12 italic">Educational purposes only. No offer to sell or solicitation to buy.</p>
+                </div>
+              )
+            }
+          ];
+
+          const allSlides = selectedPath 
+            ? [...sharedSlides, ...(selectedPath === 'A' ? pathASlides : pathBSlides)]
+            : [sharedSlides[0]];
+          
+          const currentSlideData = allSlides[currentSlide];
+
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col">
+              <div className="bg-white border-b-2 border-gray-200 px-8 py-5 flex items-center justify-between shadow-sm">
+                <div className="flex items-center space-x-6">
+                  <button onClick={resetPresentation} className="text-sm text-gray-600 hover:text-black">
+                    <span className="font-medium">🏠 PNL CAPITAL PARTNERS</span>
+                  </button>
+                  {selectedPath && (
+                    <>
+                      <span className="text-xs px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium">
+                        {selectedPath === 'A' ? '📚 Beginner' : '💼 Institutional'} Track
+                      </span>
+                      <button onClick={switchPath} className="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg">
+                        Switch to Path {selectedPath === 'A' ? 'B' : 'A'}
+                      </button>
+                    </>
+                  )}
+                </div>
+                <div className="text-base text-gray-600 font-medium">{currentSlide + 1} / {allSlides.length}</div>
+              </div>
+
+              {currentSlideData?.education && (
+                <div className="bg-yellow-50 border-b border-yellow-200 px-8 py-4">
+                  <div className="max-w-6xl mx-auto flex items-start space-x-3">
+                    <span className="text-yellow-600">💡</span>
+                    <div>
+                      <p className="text-sm font-medium text-yellow-900">Key Insight:</p>
+                      <p className="text-sm text-yellow-800">{currentSlideData.education}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex-1 flex items-center justify-center p-8">
+                <div className="w-full max-w-6xl bg-white rounded-2xl shadow-2xl p-16 min-h-[700px] flex flex-col">
+                  {currentSlideData?.subtitle ? (
+                    <div className="text-center mb-16">
+                      <h1 className="text-6xl font-light mb-6">{currentSlideData.title}</h1>
+                      <p className="text-3xl text-gray-600 font-light">{currentSlideData.subtitle}</p>
+                    </div>
+                  ) : (
+                    <h2 className="text-4xl font-light mb-12 border-b-2 border-gray-200 pb-6">{currentSlideData?.title}</h2>
+                  )}
+                  <div className="flex-1">{currentSlideData?.content}</div>
+                </div>
+              </div>
+
+              {selectedPath && (
+                <div className="bg-white border-t-2 border-gray-200 px-8 py-6 flex items-center justify-between">
+                  <button onClick={() => goToSlide(currentSlide - 1)} disabled={currentSlide === 0} className="px-6 py-3 rounded-lg hover:bg-gray-100 disabled:opacity-30 text-lg font-medium">
+                    ← Previous
+                  </button>
+                  <div className="flex items-center space-x-2">
+                    {allSlides.map((_, index) => (
+                      <button key={index} onClick={() => goToSlide(index)} className={`rounded-full transition-all ${index === currentSlide ? 'bg-blue-600 w-10 h-3' : 'bg-gray-300 w-3 h-3'}`} />
+                    ))}
+                  </div>
+                  <button onClick={() => goToSlide(currentSlide + 1)} disabled={currentSlide === allSlides.length - 1} className="px-6 py-3 rounded-lg hover:bg-gray-100 disabled:opacity-30 text-lg font-medium">
+                    Next →
+                  </button>
+                </div>
+              )}
+            </div>
+          );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PresentationDeck />);
+    </script>
+</body>
+</html>
